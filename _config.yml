@@ -1,0 +1,29 @@
+# Site settings
+title: Bitwise Mishmash
+email: jonruttan@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  An online journal for sundry topics regarding computers and software.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "https://jonruttan.github.io/" # the base hostname & protocol for your site
+twitter_username: jonruttan
+github_username:  jonruttan
+
+# Build settings
+markdown: redcarpet
+markdown_ext: markdown,mkdown,mkdn,mkd,md
+
+redcarpet:
+  extensions:
+  - tables
+  - autolink
+  - strikethrough
+  - space_after_headers
+  - with_toc_data
+  - fenced_code_blocks
+  - superscript
+  - footnotes
+  - smart # SmartyPants
+
+gems:
+  - jekyll-mentions
+  - jemoji
