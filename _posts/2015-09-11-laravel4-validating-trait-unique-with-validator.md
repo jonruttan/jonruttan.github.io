@@ -17,24 +17,29 @@ The [Watson Validating](https://github.com/dwightwatson/validating) and the [Ese
 
 # Watson ValidatingTrait Instructions
 
+If you're using the Watson ValidatingTrait, then you'll need to follow these instructions. If you're using the Esensi ValidatingModelTrait, skip these instructions, and follow the [Esensi section below](#esensi-validatingmodeltrait-instructions).
+
 - Copy this gist as *app/traits/ValidatingTrait.php*
 
 {% gist edd65d4c5e8bc013337d %}
 
-Include this in the Model where you wish to use the ValidatingTrait
+Include this in the Model where you wish to use the ValidatingTrait:
 
 ```php
 <?php
 use \Traits\ValidatingTrait;
 ```
 
-instead of 
+instead of:
 
 ```php
 <?php
 use \Watson\Validating\ValidatingTrait;
 ```
 
+That's it, you're done. You can use the trait and validator together.
+
+---
 
 # Esensi\ValidatingModelTrait Instructions
 
@@ -49,11 +54,11 @@ Include this in the Model where you wish to use the ValidatingModelTrait:
 use \Traits\ValidatingModelTrait;
 ```
 
-instead of 
+instead of:
 
 ```php
 <?php
 use \Esensi\Model\Traits\ValidatingModelTrait;
 ```
 
-
+Et voila! They now work together as a team.
