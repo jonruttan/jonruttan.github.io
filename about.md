@@ -4,8 +4,14 @@ title: About
 permalink: /about/
 ---
 
-This is Jon Ruttan's online journal for sundry topics regarding computers and software.
+# About Me
 
-I've been a professional software developer for 20 years, and an amateur for 10 years prior to that. I'm equally fascinated by hardware and software, but I chose software for my career, hardware for a hobby. I've always loved taking things apart to see how they work, and if they're broken, fixing them.
+Welcome to my online journal, where I delve into various topics related to computers and software.
 
-I put this site together so I'd have a place to record and share information about the the methods I've employed when working on computer and development problems.
+# My Journey
+
+With 30 years of professional experience in software development and 10 as an amateur, my passion lies at the intersection of hardware and software. While my career is rooted in software, hardware remains a beloved hobby. I've always enjoyed deconstructing and fixing things to understand their workings.
+
+# Purpose
+
+This site serves as a repository for sharing my methods and insights on tackling computer and development challenges.
