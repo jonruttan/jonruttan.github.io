@@ -1,9 +1,12 @@
 ---
 layout: post
-title:  "Turtle Graphics: 0.1. An Introduction"
-categories: turtle-graphics
+title:  "Turtle Geometry: 0.1. An Introduction"
+categories: turtle-geometry
+excerpt_separator: <!--more-->
 ---
-{% include turtle-graphics/preamble.md %}
+{% include turtle-geometry/preamble.md %}
+
+<!--more-->
 
 # 0.1. An Introduction
 
@@ -60,7 +63,7 @@ I've decided to use [Racket](https://racket-lang.org), a dialect of Lisp, as my 
 (turtles #t)
 ```
 
-![Screenshot 2024-06-27 at 17.00.17](/assets/turtle-graphics/Screenshot 2024-06-27 at 17.00.17.png)
+![Screenshot 2024-06-27 at 17.00.17](/assets/turtle-geometry/Screenshot 2024-06-27 at 17.00.17.png)
 
 ## Reflections
 
