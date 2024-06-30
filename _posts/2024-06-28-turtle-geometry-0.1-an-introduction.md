@@ -74,3 +74,5 @@ So far so good, we've chosen a language, and we've got a turtle on the screen. T
 With the choice of language out of the way, it's time to turn to the Turtle Procedure Notation mentioned earlier.
 
 I'll tackle that in the next post.
+
+---
