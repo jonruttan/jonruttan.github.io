@@ -232,20 +232,7 @@ In Racket a function's final expression is returned implicitly.
     (forward distance)))
 ```
 
-To leave early from a function in Racket we can use continuations with the `let/cc` (`call/cc (lambda (k) body ...))`) construct, although it would be easier to just rewrite this as:
-
-```scheme
-;; Computation A.10, p.396#comp.1
-;; Alternate 1
-;;
-;; TO LAZY.FORWARD DISTANCE
-;;    IF DISTANCE > 50 THEN RETURN
-;;    FORWARD DISTANCE
-;;
-(define (lazy.forward distance)
-  (unless (> distance 50)
-    (forward distance)))
-```
+To leave early from a function in Racket we can use continuations with the `let/cc` construct.
 
 ### Parentheses, Commas, and Comments
 
