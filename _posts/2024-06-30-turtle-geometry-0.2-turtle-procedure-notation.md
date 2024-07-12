@@ -10,13 +10,11 @@ Having settled on using Racket as the implementation language, next I'll go thro
 
 <!--more-->
 
-The previous post in this Turtle Geometry series can be found [here]({{ page.previous.url }}).
-
-## Preamble
-
 {% include turtle-geometry/preamble.md %}
 
-## Turtle Procedure Notation
+---
+
+# Turtle Procedure Notation
 
 The Turtle Procedure Notation consists of:
 - a simple syntax,
