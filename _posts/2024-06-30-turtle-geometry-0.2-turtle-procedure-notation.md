@@ -912,7 +912,7 @@ That was a fair bit to cover, but that's the full extent of the Turtle Procedure
 
 In this installment we analysed the Turtle Procedure Notation's syntax and language constructs.
 
-In the next post we'll focus on the Turtle Functions, and create the prelude implementation which sets-up our Turtle Geometry environment.
+In the next post we'll set up the Turtle Geometry environment, implement the turtle's _position_ and _heading_ functions, and use them to draw a few simple pictures.
 
 ---
 ---
