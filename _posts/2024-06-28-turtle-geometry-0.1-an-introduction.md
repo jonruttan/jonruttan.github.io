@@ -59,6 +59,7 @@ I've decided to use [Racket](https://racket-lang.org), a dialect of Lisp, as my 
 ```scheme
 #lang racket
 
+;; Prelude B.0
 (require graphics/turtles)
 
 ; Initialize.
