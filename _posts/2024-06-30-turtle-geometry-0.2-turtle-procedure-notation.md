@@ -23,9 +23,9 @@ The Turtle Procedure Notation consists of:
 
 The syntax is _so_ simple that it requires almost no attention.
 
-A few library functions are discussed in Appendix A, but most of it is focused on language constructs. The Racket counterparts need to be determined before tackling the rest of the book, so that is the aim of this section.
+A few library functions are discussed in Appendix A, but most of it is focused on language constructs. Their Racket counterparts need to be determined before tackling the rest of the book, so that is the aim of this section.
 
-### Basic Operations and Data Types
+## Basic Operations and Data Types
 
 > …addition, subtraction, multiplication, division (denoted `/`), and exponentiation (denoted `↑`). These obey the usual precedence conventions;
 
@@ -100,7 +100,7 @@ Racket has an advanced numerical tower which can handle integers, floating point
 
 As with Turtle Procedure Notation, Racket surrounds strings with quotation marks (`"`).
 
-### Variables
+## Variables
 
 > The assignment operator `←` is used to assign names to data objects. A name can be any non-numeric character string that does not contain a space.
 
@@ -134,7 +134,7 @@ As with Turtle Procedure Notation, Racket surrounds strings with quotation marks
 
 Variables in Lisp are handled a bit differently. Although it's not shown in these particular examples, in Lisp there is a distinction between creating a variable, and changing its value. The Scheme dialect of Lisp, of which Racket is a descendant (but not a strict adherent), uses `define` to create variables, and `set!` to modify their values. Additionally there's (normally) a distinction between global variables created with `define`, and block-scoped variables created with `let`. Racket has opted to introduce a lexically scoped `define`, performing double-duties depending on where it is used. While I understand the rationale, I consider it an anti-pattern. Luckily the use of it is optional, so I'm going to use the Scheme approach here.
 
-### Procedures
+## Procedures
 
 > Procedures provide a way to build complex operations by combining simpler ones. A procedure is simply a list of commands, which are executed in sequence whenever the procedure is invoked.
 
@@ -232,7 +232,7 @@ In Racket a function's final expression is returned implicitly.
 
 To leave early from a function in Racket we can use continuations with the `let/cc` construct.
 
-### Parentheses, Commas, and Comments
+## Parentheses, Commas, and Comments
 
 > Complex expressions can often be made more legible through judicious use of parentheses.…In general, readability can be increased in a procedure call by enclosing the inputs to the procedure in parentheses, separated by commas.
 
@@ -254,7 +254,7 @@ Since Racket’s order of operations is explicit, and function arguments are alw
 
 Racket and Turtle Procedure Notation share the same comment format.
 
-### Conditional Expressions
+## Conditional Expressions
 
 > As in most languages, our notation for turtle programs makes use of an "if…then…else…" construction.
 
@@ -342,7 +342,7 @@ In Racket the equivalents are `and` and `or`.
   (and (> a b) (< a c)))
 ```
 
-### Iteration Commands
+## Iteration Commands
 
 > Another element of Turtle Procedure Notation is given by the iteration (or looping) constructs, signalled by the word `REPEAT`. For example, the form "`REPEAT <number> <commands>`" repeats the designated commands the specified number of times.
 
@@ -617,7 +617,7 @@ This construct can be replaced with `for` loop over a range. From my interpretat
 
 This very directly translates to Racket's `for` loop.
 
-### Recursion
+## Recursion
 
 > Although it is implicit in the description of procedures, we should point out explicitly that a procedure can include calls to *any* procedure, including itself. Here, for example, is a simple program from chapter 1:
 
@@ -673,7 +673,7 @@ This very directly translates to Racket's `for` loop.
 
 Racket supports recursion, and does tail call elimination giving it support for infinite looping, since recursion is the main looping construct in the Scheme dialects of Lisp. 
 
-### Lists
+## Lists
 
 > One very important feature of Turtle Procedure Notation is the ability to combine the basic data objects—numbers and character strings—to form compound data objects.…In this book we've used only one kind of compound data object, the *list*. A list is simply a sequence of data objects. To specify a list in Turtle Procedure Notation, one lists the objects in sequence, surrounded by brackets. For example, `[1 (3+5) 7]` is a list of three numbers: `1`, `8`, and `7`. Lists may contain character strings as well as numbers.
 > More significantly, lists may contain items that are themselves lists. For instance, `[1 2 [3 4 5]]` is a list of three items, the third of which is itself a list of three items. Consequently, lists can readily be used to represent *hierarchical structures,* that is structures consisting of parts which themselves consist of parts.
@@ -775,7 +775,7 @@ Racket has `first` and `rest` functions.
 
 Indeed, Racket treats lists as first-class objects.
 
-### Structure-Directed Operations
+## Structure-Directed Operations
 
 > Writing programs that deal with lists often entails unpacking items from a list, performing some computation, and repacking the results into a new list. This kind of operation is facilitated by a technique known as *structure-directed assignment.*
 
@@ -814,7 +814,7 @@ Depending on context, `match-define` or `match-let` can be used to do this.
 
 In this context `match-let` can be used to destructure the lists.
 
-### Local Variables
+## Local Variables
 
 > In dealing with large programs consisting of many interacting procedures, it is important to have techniques for making the program *modular* by controlling the interactions between different parts of the program. One valuable modularity mechanism that can be provided by a computer language is to make it possible for the programmer to assign variable names independently in different parts of the program, without worrying about conflicts of names or about one part of the program accidentally destroying the variables of another part. The general problem of how to do this, and exactly what constitutes "different parts of a program," is referred to in computer-language design as the issue of "scope of variables." Different languages have different conventions for dealing with this issue.
 > One point on which most of these conventions agree is that the names of inputs to procedures should be made totally internal, or *local,* to the procedure call.
@@ -857,7 +857,7 @@ Racket supports lexically scoped local variables, allowing for each instance of 
     (right 120)))
 ```
 
-### The EXECUTE Command
+## The EXECUTE Command
 
 > A final feature of Turtle Procedure Notation is the ability to execute character strings as commands in the language. This is accomplished by the `EXECUTE` command.
 
@@ -904,14 +904,15 @@ So the original version could be rewritten as:
    (execute command2)))
 ```
 
-## Reflections
+# Reflections
 
-That was a fair bit to cover, but that's the full extent of the Turtle Procedure Notation's language constructs. Converting them to Racket is really straightforward. It's interesting to think that those constructs, and a dozen functions to control a scuttling turtle drawing on a flat plane, make up the entirity of the environment the book operates in.
+That was a fair bit to cover, but that's the full extent of the Turtle Procedure Notation's language constructs. Converting them to Racket was really straightforward. The code is available as [constructs.rkt](https://github.com/jonruttan/turtle-geometry-racket/blob/main/src/0-appendix-a/constructs.rkt) in my [turtle-geometry-racket](https://github.com/jonruttan/turtle-geometry-racket) repository on GitHub. It's interesting to think that those constructs, and a dozen functions to control a scuttling turtle drawing on a flat plane, make up the entirity of the environment the book operates in.
 
-## Next Steps
+# Next Steps
 
 In this installment we analysed the Turtle Procedure Notation's syntax and language constructs.
 
 In the next post we'll focus on the Turtle Functions, and create the prelude implementation which sets-up our Turtle Geometry environment.
 
+---
 ---
