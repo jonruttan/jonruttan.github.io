@@ -4,9 +4,11 @@ title:  "Turtle Geometry: 0.1. An Introduction"
 categories: turtle-geometry
 excerpt_separator: <!--more-->
 ---
-{% include turtle-geometry/preamble.md %}
+{% include turtle-geometry/blurb.md %}
 
 <!--more-->
+
+---
 
 # 0.1. An Introduction
 
@@ -75,4 +77,5 @@ With the choice of language out of the way, it's time to turn to the Turtle Proc
 
 I'll tackle that in the next post.
 
+---
 ---
