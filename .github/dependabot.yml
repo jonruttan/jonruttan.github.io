@@ -1,0 +1,22 @@
+version: 2
+updates:
+  # Ruby gems (Gemfile / Gemfile.lock)
+  - package-ecosystem: bundler
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      # Roll all gem bumps into a single PR per week to cut noise.
+      bundler:
+        patterns:
+          - "*"
+
+  # GitHub Actions used by the Pages workflow
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns:
+          - "*"
