@@ -3,6 +3,10 @@ name: Build and deploy Jekyll site to GitHub Pages
 on:
   push:
     branches: [master]
+  # Build (but don't deploy) pull requests so dependency bumps and other
+  # changes get a Jekyll build check before merge.
+  pull_request:
+    branches: [master]
   # Allow manual runs from the Actions tab.
   workflow_dispatch:
 
@@ -12,9 +16,10 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment; don't cancel an in-progress run.
+# Serialize deploys of master; give each PR branch its own group so PR
+# builds run independently and never block a deployment.
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -44,6 +49,8 @@ jobs:
 
   deploy:
     needs: build
+    # Only deploy on pushes to master, never for pull-request builds.
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
