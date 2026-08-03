@@ -29,6 +29,12 @@ github_username:  jonruttan
 
 # Build settings
 theme: minima
+
+# Silence Sass deprecation warnings coming from the theme gem's own
+# stylesheets (assets/main.scss -> minima.scss), which we don't control.
+# Our own SCSS (css/, _sass/) compiles warning-free on modern Sass.
+sass:
+  quiet_deps: true
 plugins:
   - jekyll-feed
 

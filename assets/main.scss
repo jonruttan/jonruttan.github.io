@@ -1,0 +1,6 @@
+---
+# Shadows the minima gem's assets/main.scss. This site's stylesheet is
+# css/main.css (see _includes/head.html); the theme's compile is unused,
+# and its @import chain trips Sass deprecation warnings we can't fix in
+# the gem. Overriding it with this empty stylesheet removes both.
+---
