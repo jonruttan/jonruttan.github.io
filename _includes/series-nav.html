@@ -1,0 +1,50 @@
+{% comment %}
+  Series-aware previous/next navigation.
+
+  Finds the neighbouring posts in the same series (the page's first
+  category), not just the site-wide chronological neighbours — so a
+  turtle-geometry post never points at a mazes post.
+
+  site.categories[cat] lists posts newest-first:
+    index - 1 → newer  → "Next in the series"
+    index + 1 → older  → "Earlier in the series"
+
+  The "next" link renders only once a newer post in the series exists,
+  so it appears automatically when the next installment is published.
+
+  Parameters:
+    only=(next|prev) — render just one direction as a Markdown line
+                       (used by the preambles); omit for the full
+                       bottom-of-post nav.
+{% endcomment %}
+{%- assign series = page.categories | first -%}
+{%- if series -%}
+  {%- assign series_posts = site.categories[series] -%}
+  {%- assign series_prev = nil -%}
+  {%- assign series_next = nil -%}
+  {%- for p in series_posts -%}
+    {%- if p.url == page.url -%}
+      {%- unless forloop.first -%}
+        {%- assign i = forloop.index0 | minus: 1 -%}
+        {%- assign series_next = series_posts[i] -%}
+      {%- endunless -%}
+      {%- unless forloop.last -%}
+        {%- assign i = forloop.index0 | plus: 1 -%}
+        {%- assign series_prev = series_posts[i] -%}
+      {%- endunless -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if include.only == "prev" -%}
+{% if series_prev %}Earlier in the series: [{{ series_prev.title }}]({{ series_prev.url | relative_url }}){% endif %}
+  {%- elsif include.only == "next" -%}
+{% if series_next %}Next in the series: [{{ series_next.title }}]({{ series_next.url | relative_url }}){% endif %}
+  {%- else -%}
+    {%- if series_prev or series_next %}
+<nav class="series-nav">
+  <div class="series-nav-prev">{% if series_prev %}← <a href="{{ series_prev.url | relative_url }}">{{ series_prev.title }}</a>{% endif %}</div>
+  <div class="series-nav-next">{% if series_next %}<a href="{{ series_next.url | relative_url }}">{{ series_next.title }}</a> →{% endif %}</div>
+</nav>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

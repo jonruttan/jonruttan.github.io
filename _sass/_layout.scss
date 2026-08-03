@@ -234,3 +234,23 @@
         }
     }
 }
+
+
+
+/**
+ * Series navigation (previous/next post in the same category)
+ */
+.series-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: $spacing-unit / 2;
+    margin-bottom: $spacing-unit;
+    padding-top: $spacing-unit / 2;
+    border-top: 1px solid $grey-color-light;
+    font-size: $small-font-size;
+
+    .series-nav-next {
+        margin-left: auto;
+        text-align: right;
+    }
+}
