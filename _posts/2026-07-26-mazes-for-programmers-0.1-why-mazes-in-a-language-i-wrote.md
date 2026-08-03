@@ -49,7 +49,7 @@ The appeal is straightforward: a well-built book, a language that needs exercisi
 
 ## Next
 
-Before any of that, the code needs a home. Next post, I take it out of the language's source tree and set it up as a repo.
+Before any of that, the code needs a home. Next post: setting up the repo.
 
 ---
 ---
