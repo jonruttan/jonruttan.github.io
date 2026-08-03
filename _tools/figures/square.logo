@@ -1,6 +1,0 @@
-TO SQUARE SIZE
-    REPEAT 4
-        FD SIZE
-        RT 90
-
-SQUARE 100

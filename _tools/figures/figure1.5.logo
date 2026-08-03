@@ -1,6 +1,0 @@
-TO CIRCLE
-    REPEAT 360
-        FD 1
-        RT 1
-
-CIRCLE
