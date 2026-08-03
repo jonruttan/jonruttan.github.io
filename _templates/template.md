@@ -17,29 +17,26 @@ excerpt_separator: <!--more-->
 
 > <Quote>
 
-```scheme
-;; <type> <type-x.y.z>, p.<page>#<type-abbr>.<page-type-#>
-;; 
-;; <TURTLE PROCEDURE NOTATION>
-;;
-<Racket>
+```logo
+; <type> <type-x.y.z>, p.<page>#<type-abbr>.<page-type-#> [<book-label>]
+<LOGO — the book's notation, verbatim, runnable>
 ```
 
-> #### <type> <x.y.z>
-<Description>
-![<Name>](/assets/turtle-geometry/<image>)
-```scheme
-;; <type> <type-x.y.z>, p.<page>#<type-abbr>.<page-type-#>
-;; 
-;;  <TURTLE PROCEDURE NOTATION>
-<Racket>
-```
----
+{% include turtle-geometry/turtle.html src="/assets/turtle-geometry/bc/<name>.json" caption="<type> <x.y.z>, p.<page>#<type-abbr>.<page-type-#> — <description>" speed="20" %}
+
+<!--
+  Figure workflow:
+    1. Program lives in the code repo as chapter-N/<name>.logo
+    2. sh _tools/logo-bc.sh path/to/<name>.logo assets/turtle-geometry/bc/<name>.json
+    3. Reference it with the include above.
+  Short streams can be inlined instead of using src:
+    {% include turtle-geometry/turtle.html bc='["F",100.0,"R",90.0]' caption="…" %}
+-->
 
 # Reflections
 
 <Reflections -- past tense>
-<Link>
+<Link to repo code>
 <Reflections -- future tense>
 
 # Next Steps
