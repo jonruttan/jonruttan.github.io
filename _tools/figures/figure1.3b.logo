@@ -1,0 +1,17 @@
+TO SQUARE SIZE
+    REPEAT 4
+        FD SIZE
+        RT 90
+
+TO TRIANGLE SIZE
+    REPEAT 3
+        FD SIZE
+        RT 120
+
+TO HOUSE SIDE
+    SQUARE SIDE
+    FD SIDE
+    RT 30
+    TRIANGLE SIDE
+
+HOUSE 100

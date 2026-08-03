@@ -1,0 +1,6 @@
+TO TRIANGLE SIZE
+    REPEAT 3
+        FD SIZE
+        RT 120
+
+TRIANGLE 100

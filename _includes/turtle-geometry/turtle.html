@@ -1,0 +1,19 @@
+{% comment %}
+  Embed an animated turtle drawing.
+
+  Parameters:
+    bc      — bytecode as an inline JSON array, e.g. bc='["F",100,"R",90]'
+    src     — or a path to a bytecode .json file, relative to site root
+    caption — optional figure caption
+    speed   — optional initial speed, 1–200 (default 30; 200 = instant)
+
+  Usage:
+    {% include turtle-geometry/turtle.html bc='["F",100,"R",90,"F",100,"R",90,"F",100,"R",90,"F",100,"R",90]' caption="Figure 1.1 (b)" %}
+
+  Generate bytecode from a Logo program with _tools/logo-bc.sh.
+{% endcomment %}
+<figure class="turtle-figure">
+  <div class="turtle-player"{% if include.bc %} data-bc='{{ include.bc }}'{% endif %}{% if include.src %} data-src="{{ include.src | relative_url }}"{% endif %}{% if include.speed %} data-speed="{{ include.speed }}"{% endif %}></div>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>
+<script src="{{ '/assets/turtle-geometry/turtle-player.js' | relative_url }}" defer></script>

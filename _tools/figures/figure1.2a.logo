@@ -1,0 +1,6 @@
+TO TRY.ANGLE SIZE
+    REPEAT 3
+        FD SIZE
+        RT 60
+
+TRY.ANGLE 100

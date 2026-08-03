@@ -1,0 +1,24 @@
+TO THING
+    FD 100
+    RT 90
+    FD 100
+    RT 90
+    FD 50
+    RT 90
+    FD 50
+    RT 90
+    FD 100
+    RT 90
+    FD 25
+    RT 90
+    FD 25
+    RT 90
+    FD 50
+
+TO THING3
+    REPEAT 100
+        THING
+        LT 45
+        FD 100
+
+THING3

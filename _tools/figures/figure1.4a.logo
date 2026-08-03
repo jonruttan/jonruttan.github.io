@@ -1,0 +1,18 @@
+TO THING
+    FD 100
+    RT 90
+    FD 100
+    RT 90
+    FD 50
+    RT 90
+    FD 50
+    RT 90
+    FD 100
+    RT 90
+    FD 25
+    RT 90
+    FD 25
+    RT 90
+    FD 50
+
+THING
