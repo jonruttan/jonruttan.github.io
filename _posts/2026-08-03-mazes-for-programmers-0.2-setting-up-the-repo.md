@@ -34,6 +34,8 @@ The address has the book on the left and me on the right: `[book's convention], 
 
 Then `git log --follow maze/grid.x` replays how the `Grid` grew, and a post about a rewrite is a diff between two of those commits — the same "here's what changed" the book itself relies on.
 
+> **Update (2026-08-11):** this mechanism got an upgrade after the post was written. Module files now wear their book chapter in the filename — `grid@1.2.x` is chapter 2's grid — so a chapter's rewrite lands *beside* its predecessor instead of over it: versions visible in the tree itself, no archaeology required. The commit convention above is unchanged. Details arrive with chapter 2's posts.
+
 That's also why the repo starts empty. The tempting way to begin — write the code, commit it once it works — would throw the history away before it started: `grid.x` would enter the log complete, in one commit, final state. So the repo opens with no maze code at all, and each post brings code in as the book builds it.
 
 ## The shape of it
