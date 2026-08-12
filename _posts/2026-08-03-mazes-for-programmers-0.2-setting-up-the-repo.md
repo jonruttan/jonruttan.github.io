@@ -32,11 +32,9 @@ Book: Algorithm 1.1.0, p.6#alg.0
 
 The address has the book on the left and me on the right: `[book's convention], p.[page]#[my convention].[index]`. Every book labels things its own way — one has `Fig. 1.2`, another `Image 0.2`, some don't label at all — so the left half uses the book's own convention, and where the book has none I fill the gap: *Mazes* doesn't number its algorithms, so `Algorithm 1.1.0` is chapter 1's first, step zero. The right half is mine and never varies — `alg.0` is the first algorithm on page 6. Every commit points into the book, and the book points back.
 
-Then `git log --follow maze/grid.x` replays how the `Grid` grew, and a post about a rewrite is a diff between two of those commits — the same "here's what changed" the book itself relies on.
+The other half is how code evolves. Chapters rework earlier code, and the repo keeps every stage as its own file: a module wears its chapter in its name — `grid@1.2.x` is chapter 2's grid — and when chapter 3 rebuilds it, `grid@1.3.x` lands *beside* its predecessor, not over it. A post about a rewrite is a diff between two files in the same directory, and `git log` replays how each grew within its chapter — the same "here's what changed" the book itself relies on.
 
-> **Update (2026-08-11):** this mechanism got an upgrade after the post was written. Module files now wear their book chapter in the filename — `grid@1.2.x` is chapter 2's grid — so a chapter's rewrite lands *beside* its predecessor instead of over it: versions visible in the tree itself, no archaeology required. The commit convention above is unchanged. Details arrive with chapter 2's posts.
-
-That's also why the repo starts empty. The tempting way to begin — write the code, commit it once it works — would throw the history away before it started: `grid.x` would enter the log complete, in one commit, final state. So the repo opens with no maze code at all, and each post brings code in as the book builds it.
+That's also why the repo starts empty. The tempting way to begin — write the code, commit it once it works — would throw the history away before it started: `grid@1.2.x` would enter the log complete, in one commit, final state. So the repo opens with no maze code at all, and each post brings code in as the book builds it.
 
 ## The shape of it
 
@@ -53,8 +51,8 @@ mazes-for-programmers-x-lang/
 
 Two decisions are baked in here:
 
-- **Modules are namespaced, not glued together with relative includes.** `grid.x` will provide `maze/grid` and be imported as `(import maze/grid)` — the same shape x-lang's own applications use.
-- **The carvers get their own directory.** By the end of the book there are around a dozen of them; they live under `maze/algorithm/`, with hyphenated filenames (`binary-tree.x`, later `hunt-and-kill.x`) following the library's own naming.
+- **Modules are namespaced, not glued together with relative includes.** `grid@1.2.x` will provide `maze/grid` and be imported as `(import maze/grid)` — the same shape x-lang's own applications use.
+- **The carvers get their own directory.** By the end of the book there are around a dozen of them; they live under `maze/algorithm/`, with hyphenated, chapter-versioned filenames (`binary-tree@1.2.x`, later `hunt-and-kill@1.5.x`) following the library's own naming.
 
 ## A home
 
