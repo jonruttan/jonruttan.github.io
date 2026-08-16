@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Micro Minesweeper: Sixteen Wide in One Byte"
+title:  "Micro Minesweeper"
 categories: [c, minesweeper]
 excerpt_separator: <!--more-->
 ---
@@ -12,7 +12,7 @@ In this post we'll look at how the board addressing and the scoring stay inside 
 
 ---
 
-# Sixteen Wide in One Byte
+# Micro Minesweeper
 
 ## No Multiply, No Divide
 
@@ -20,17 +20,32 @@ The 6502 and the Z80 have no multiply instruction. No divide either. Both are su
 
 So we lean on shifts, masks and repeated addition, and keep what we can in single bytes.
 
-## One Byte, 256 Cells
+## Two Facts
 
-The board is one 256-byte array, and every index into it is a `uint8`. The stride is a constant 16, so a coordinate becomes an index with a shift and an or:
+Everything after this follows from two of them.
+
+**A `uint8` is arithmetic modulo 256.** Wrapping isn't a hazard to code around, it's the ring we're working in. Go past 255 and we land back at 0, which is exactly what the arithmetic says should happen.
+
+**256 is 16 squared.** So a 16x16 board fills a byte index exactly, and the two coordinates are the two nibbles — row on top, column underneath.
+
+Between them, every multiply, divide and modulo in the program turns into a shift or a mask:
+
+| what we want | what we write |
+| --- | --- |
+| `y * 16` | `y << 4` |
+| `i / 16` | `i >> 4` |
+| `i % 16` | `i & 0x0f` |
+| `rand() % 256` | `rand() & 0xff` |
+
+## The Board
+
+The board is one 256-byte array, and a coordinate becomes an index with a shift and an or:
 
 ```c
 i = (y << SHIFT) | x;
 ```
 
-Sixteen being a power of two is the whole trick. Back the other way is just as cheap: `x` is `i & 0x0f`, `y` is `i >> 4`.
-
-A byte indexes 256 cells. A 16x16 board is 256 cells. They line up exactly, so `rand() & 0xff` picks a random cell for us — a mask instead of a modulo, and a modulo would have meant a divide.
+Coming back out is a shift and a mask. Mine placement gets the same treatment — `rand() & 0xff` lands on a cell without a modulo.
 
 That exact fit is also the limit. Sixteen columns is as wide as a byte index goes: give each row a sentinel column and the stride becomes `width + 1`, which puts a sixteen-wide board at `16 * 17 = 272` cells, off the end of the array.
 
@@ -45,7 +60,7 @@ At a full sixteen there isn't one. Index 15 is `(f, 0)`. Index 16 is `(0, 1)`. N
 ![A 16x16 intermediate board part way through a flood fill](/assets/minesweeper/16x16-mid-flood.png)
 *One probe at `8 8`. The fill runs out to column `0` and down to row `f` — both edges — and stops where it should.*
 
-Here's the nice part. The index is a byte, so running off the end of a row doesn't run off the array — we land in the row below. So the row number *is* the test, and the row is the top nibble.
+Here's where the first fact earns its keep. Running off the end of a row doesn't run off the array, it lands us in the row below. So the row number *is* the test, and by the second fact the row is the top nibble.
 
 This is the loop that walks three cells of a row, applying `fn` to each one that's actually on it:
 
@@ -69,7 +84,7 @@ Seeding it doesn't need a wider type either. The layout pass counts playable cel
 score -= m;
 ```
 
-On a full board that count has already rolled over to zero. Doesn't matter — the subtraction still lands on the right number, because the difference fits even where the count doesn't.
+On a full board that count has already rolled over to zero. First fact again: the subtraction still lands on the right number, because the difference fits even where the count doesn't.
 
 # Reflections
 
