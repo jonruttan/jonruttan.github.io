@@ -4,6 +4,7 @@ title:  "Turtle Geometry: 0.2. Turtle Procedure Notation"
 categories: turtle-geometry
 excerpt_separator: <!--more-->
 ---
+<!--check-file: illustrate "Racket code from the series' 2024 first attempt; kept as history, tested by nothing" -->
 Having settled on using Racket as the implementation language, next I'll go through translating all the code in *Appendix A: Turtle Procedure Notation:*
 
 > Turtle Procedure Notation is meant to be a consistent and readable way to describe turtle programs independent of the quirks, details, and limitations of common computer languages, yet in such a way that the programs can be readily translated into whatever computer language is available.

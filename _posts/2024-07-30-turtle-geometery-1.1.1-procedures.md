@@ -4,6 +4,7 @@ title:  "Turtle Geometry: 1.1.1 Procedures"
 categories: turtle-geometry
 excerpt_separator: <!--more-->
 ---
+<!--check-file: illustrate "Racket code from the series' 2024 first attempt; kept as history, tested by nothing" -->
 Now that we have the Turtle Geometry environment set up, implemented some turtle control functions, and used them to draw a few simple pictures, it's time to become familiarised with the Turtle Procedure Notation for _procedures_ and _iteration_.
 
 <!--more-->

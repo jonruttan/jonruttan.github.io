@@ -4,6 +4,7 @@ title:  "Turtle Geometry: 1. Introduction to Turtle Geometry"
 categories: turtle-geometry
 excerpt_separator: <!--more-->
 ---
+<!--check-file: illustrate "Racket code from the series' 2024 first attempt; kept as history, tested by nothing" -->
 With Racket chosen as our implementation language, and the translations for the Turtle Procedure Notation's language constructs worked out, there's only one thing left before we can start interacting with the Turtle: the Turtle control functions. This post will focus on their implementation.
 
 <!--more-->

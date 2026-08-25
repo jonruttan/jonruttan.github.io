@@ -4,6 +4,7 @@ title:  "Turtle Geometry: 0.1. An Introduction"
 categories: turtle-geometry
 excerpt_separator: <!--more-->
 ---
+<!--check-file: illustrate "Racket code from the series' 2024 first attempt; kept as history, tested by nothing" -->
 {% include turtle-geometry/blurb.md %}
 
 <!--more-->

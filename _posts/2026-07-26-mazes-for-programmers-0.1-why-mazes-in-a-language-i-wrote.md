@@ -20,6 +20,7 @@ The difference is the language. The book's in Ruby. I'm doing it in [x-lang](htt
 
 At startup x-lang code reads like a Lisp — parentheses, prefix notation — but that's only its default surface, and the surface isn't the language. Underneath is a small, type-agnostic interpreter, and a dialect reshapes that interpreter itself — new types, a new reader, new syntax — until it *is* the language you loaded. Give it the right dialect and the interpreter becomes Logo, or R5RS Scheme, or R7RS; not other languages running on top of x-lang, but x-lang morphed into them. The parentheses below are just the form I'm working in here.
 
+<!--check: illustrate "a demo written for this post; it lives in no repo file" -->
 ```scheme
 ; a value dispatches to its class, subject-last — and a list is callable
 ("hello,world" split ",")       ; => ("hello" "world")

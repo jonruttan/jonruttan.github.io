@@ -24,6 +24,7 @@ A book doesn't present its code once. It builds it up a piece at a time, showing
 
 So the repo follows one rule: every step in the book that changes the code is a commit, and the commit message records where in the book it came from. I'm using x-lang's commit convention — `type(scope): subject` — and adding the book's location as a footer:
 
+<!--check: illustrate "a mock commit message showing the convention; there is nothing to check it against" -->
 ```
 feat(binary-tree): carve a passage north or east from each cell
 
@@ -40,6 +41,7 @@ That's also why the repo starts empty. The tempting way to begin — write the c
 
 What the first commit does contain is structure:
 
+<!--check: illustrate "a hand-drawn snapshot of the first commit's layout; the repo has since grown past it" -->
 ```
 mazes-for-programmers-x-lang/
 ├── maze/              # source, namespace maze/…
