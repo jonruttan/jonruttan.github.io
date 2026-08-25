@@ -26,6 +26,12 @@ info strings, which do):
     <!--check: session repo=mazes cwd=. -->
     <!--check: skip "prose example" -->
 
+A file-level default, once per file (by convention right after the front
+matter), applies to every block that has no mark of its own; per-block marks
+still override it:
+
+    <!--check-file: skip "historical post (2015); no companion repo" -->
+
 Elision: a quote may cut with a line whose content is `…` (or `...`); each
 fragment between cuts must appear in order in the source file.
 """
@@ -38,6 +44,7 @@ REPOS = {
 # A book coordinate: "<Type> <numbering>, p.<page>#<abbr>.<n>"
 COORD = re.compile(r'^\s*;+\s*(.+?,\s*p+\.\s*[\d–-]+#[a-z]+\.[\w.-]+)\s*$', re.M)
 FENCE = re.compile(r'(?:^<!--check:\s*(?P<mark>.*?)-->\n)?^```(?P<lang>[\w-]*)\n(?P<body>.*?)^```', re.M | re.S)
+FILEMARK = re.compile(r'^<!--check-file:\s*(?P<mark>.*?)-->', re.M)
 ELIDE = re.compile(r'^\s*(?:…|\.\.\.|;+\s*….*|;+\s*\.\.\..*)\s*$')
 
 def repo_files(root, exts=(".logo", ".x")):
@@ -82,9 +89,11 @@ def classify(mark, lang, body):
 
 def check_post(path, caches):
     s = open(path, encoding="utf-8").read()
+    fm = FILEMARK.search(s)
+    fdefault = fm.group("mark").strip() if fm else None
     results = []
     for m in FENCE.finditer(s):
-        mark, lang, body = m.group("mark"), m.group("lang"), m.group("body")
+        mark, lang, body = m.group("mark") or fdefault, m.group("lang"), m.group("body")
         kind, detail = classify(mark, lang, body)
         if kind == "quote":
             frags = fragments(body)
@@ -119,7 +128,7 @@ def check_post(path, caches):
             reason = detail.partition(" ")[2].strip()
             results.append(("ok" if reason else "FAIL", kind,
                             reason or "needs a declared reason")) 
-        elif kind == "session":
+        elif kind in ("session", "figure"):
             results.append(("todo", kind, (body.strip().split(chr(10))[0])[:50]))
         else:
             results.append(("FAIL", "unclassified", (body.strip().split(chr(10))[0])[:50]))

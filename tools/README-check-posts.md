@@ -79,6 +79,14 @@ Fence info strings (```` ```logo file=… ````) were tried and rejected: kramdow
 stops recognizing the language and the block loses highlighting. Kramdown IALs
 attach to the wrong element. The comment is the only form that survives.
 
+A post whose blocks all share one fate takes a single file-level mark instead —
+by convention right after the front matter — which serves as the default for
+every block without a mark of its own; per-block marks still override it:
+
+```
+<!--check-file: skip "historical post (2015); no companion repo" -->
+```
+
 ## One convention, two jobs: `…`
 
 The posts already write `…` where something is cut or volatile:
