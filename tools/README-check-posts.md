@@ -122,7 +122,9 @@ Do not retrofit 105 blocks. Gate the frontier and grandfather the past:
 1. New and in-flight posts must be clean.
 2. The 2024 Racket posts (`turtle-geometry-racket`) are a retired route — either
    add that repo to the scan or mark them `illustrate` as the historical record.
-3. Unrelated posts (e.g. micro-minesweeper's C) get `skip` with a reason.
+3. Posts outside the gated series categories (`GATED` in the script) are out of
+   scope entirely — the tool excludes them by front-matter category, and they
+   carry no marks.
 
 Then wire it ahead of deploy, so a red checker blocks publication the way a red
 CI blocks a merge.

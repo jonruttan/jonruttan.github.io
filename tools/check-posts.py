@@ -41,6 +41,10 @@ REPOS = {
     "mazes":  "/Users/jon/Workspace/mazes-for-programmers-x-lang",
     "turtle": "/Users/jon/Workspace/turtle-geometry-x-logo",
 }
+# Only the series with companion repos are checked. Posts outside these
+# categories are none of this tool's business and carry no marks.
+GATED = {"mazes-for-programmers", "turtle-geometry"}
+CATS = re.compile(r'^categories:\s*(.+?)\s*$', re.M)
 # A book coordinate: "<Type> <numbering>, p.<page>#<abbr>.<n>"
 COORD = re.compile(r'^\s*;+\s*(.+?,\s*p+\.\s*[\d–-]+#[a-z]+\.[\w.-]+)\s*$', re.M)
 FENCE = re.compile(r'(?:^<!--check:\s*(?P<mark>.*?)-->\n)?^```(?P<lang>[\w-]*)\n(?P<body>.*?)^```', re.M | re.S)
@@ -87,8 +91,16 @@ def classify(mark, lang, body):
     if m: return "quote", m.group(1)
     return "unclassified", ""
 
+def gated(s):
+    parts = s.split("---", 2)
+    head = parts[1] if len(parts) > 2 else ""
+    m = CATS.search(head)
+    cats = set(re.split(r'[,\s\[\]]+', m.group(1))) if m else set()
+    return bool(cats & GATED)
+
 def check_post(path, caches):
     s = open(path, encoding="utf-8").read()
+    if not gated(s): return []
     fm = FILEMARK.search(s)
     fdefault = fm.group("mark").strip() if fm else None
     results = []
