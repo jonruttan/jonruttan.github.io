@@ -62,7 +62,7 @@ The repo is public: [mazes-for-programmers-x-lang](https://github.com/jonruttan/
 
 ## Next
 
-The code that lands here will run on x-lang, and x-lang moves — the language itself, and the library modules the code will import. Before the first algorithm goes in, I want the floor it stands on frozen. Next post: pinning.
+The code that lands here will run on x-lang, and x-lang moves — the language itself, and the library modules the code will import. Before the first algorithm goes in, the floor it stands on gets frozen. Next post: mazes — chapter 1 runs on paper.
 
 ---
 ---
