@@ -16,30 +16,9 @@ No mazes this post, just the setup.
 
 # 0.2 Setting Up the Repo
 
-## Why a repo, and not just a folder
+## The Repo
 
-Tidiness isn't the main reason. History is.
-
-A book doesn't present its code once. It builds it up a piece at a time, showing only what changed, and now and then it goes back and rewrites something. The `Grid` that was enough for chapter 2 gets reworked in chapter 3, when solving needs more from it. A folder only shows the final state of `grid.x`. I want the whole history of how it changed, and that's what version control is for.
-
-So the repo follows one rule: every step in the book that changes the code is a commit, and the commit message records where in the book it came from. I'm using x-lang's commit convention — `type(scope): subject` — and adding the book's location as a footer:
-
-<!--check: illustrate "a mock commit message showing the convention; there is nothing to check it against" -->
-```
-feat(binary-tree): carve a passage north or east from each cell
-
-Book: Algorithm 1.1.0, p.6#alg.0
-```
-
-The address has the book on the left and me on the right: `[book's convention], p.[page]#[my convention].[index]`. Every book labels things its own way — one has `Fig. 1.2`, another `Image 0.2`, some don't label at all — so the left half uses the book's own convention, and where the book has none I fill the gap: *Mazes* doesn't number its algorithms, so `Algorithm 1.1.0` is chapter 1's first, step zero. The right half is mine and never varies — `alg.0` is the first algorithm on page 6. Every commit points into the book, and the book points back.
-
-The other half is how code evolves. Chapters rework earlier code, and the repo keeps every stage as its own file: a module wears its chapter in its name — `grid@1.2.x` is chapter 2's grid — and when chapter 3 rebuilds it, `grid@1.3.x` lands *beside* its predecessor, not over it. A post about a rewrite is a diff between two files in the same directory, and `git log` replays how each grew within its chapter — the same "here's what changed" the book itself relies on.
-
-That's also why the repo starts empty. The tempting way to begin — write the code, commit it once it works — would throw the history away before it started: `grid@1.2.x` would enter the log complete, in one commit, final state. So the repo opens with no maze code at all, and each post brings code in as the book builds it.
-
-## The shape of it
-
-What the first commit does contain is structure:
+The series' code lives in a public repo: [mazes-for-programmers-x-lang](https://github.com/jonruttan/mazes-for-programmers-x-lang), licensed [MIT No Attribution](https://github.com/jonruttan/mazes-for-programmers-x-lang/blob/main/LICENSE) to match x-lang. The first commit is just the directory structure:
 
 <!--check: illustrate "a hand-drawn snapshot of the first commit's layout; the repo has since grown past it" -->
 ```
@@ -51,18 +30,28 @@ mazes-for-programmers-x-lang/
 └── LICENSE            # MIT-0, same as x-lang
 ```
 
-Two decisions are baked in here:
+The source goes under `maze/`, with the maze-generation algorithms in a directory of their own at `maze/algorithm/` — there are around a dozen of them by the end of the book. Each post adds code as the book introduces it.
 
-- **Modules are namespaced, not glued together with relative includes.** `grid@1.2.x` will provide `maze/grid` and be imported as `(import maze/grid)` — the same shape x-lang's own applications use.
-- **The carvers get their own directory.** By the end of the book there are around a dozen of them; they live under `maze/algorithm/`, with hyphenated, chapter-versioned filenames (`binary-tree@1.2.x`, later `hunt-and-kill@1.5.x`) following the library's own naming.
+## Chapter-Versioned Files
 
-## A home
+The book reworks its code as it goes — the `Grid` that's enough for chapter 2 gets rebuilt in chapter 3, when solving needs more from it. To keep every stage runnable, each version is its own file: the name carries the chapter, so `grid@1.2.x` is chapter 2's grid, providing `maze/grid`, and chapter 3's rebuild goes in beside it as `grid@1.3.x` rather than replacing it. Code imports the chapter it wants — `(import-version-once maze/grid "1.2.*")` — so old posts keep working as new ones land, and a rewrite can be read as a diff between the two files.
 
-The repo is public: [mazes-for-programmers-x-lang](https://github.com/jonruttan/mazes-for-programmers-x-lang), licensed [MIT No Attribution](https://github.com/jonruttan/mazes-for-programmers-x-lang/blob/main/LICENSE) to match x-lang. What's there today is the scaffold — the tree and the conventions — plus one more commit: the next post's subject.
+## Commit Addresses
 
-## Next
+Each commit records where in the book its change came from. The book doesn't label its algorithms, so I've settled on a simple address: the book's own name for the thing where it has one, the page number, and a counter for the position on the page. Here's the shape of a commit message, using the first algorithm in the book:
 
-The code that lands here will run on x-lang, and x-lang moves — the language itself, and the library modules the code will import. Before the first algorithm goes in, the floor it stands on gets frozen. Next post: mazes — chapter 1 runs on paper.
+<!--check: illustrate "a mock commit message showing the convention; there is nothing to check it against" -->
+```
+feat(binary-tree): carve a passage north or east from each cell
+
+Book: Algorithm 1.1.0, p.6#alg.0
+```
+
+`Algorithm 1.1.0` is chapter 1's first algorithm, and `p.6#alg.0` says it's the first algorithm on page 6. The posts cite the book with these same addresses, so a citation in a post can be matched to a commit, and a commit can be traced back to its page.
+
+## Next Steps
+
+The code that lands here will run on x-lang, and x-lang is still moving — the language and its library both. Before the first algorithm goes in, the repo gets pinned to a release so it keeps working while they change. Then the mazes start: the book's first chapter, it turns out, needs no code at all.
 
 ---
 ---
