@@ -11,7 +11,7 @@ gem "minima", "~> 2.5"
 
 # Plugins
 group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.17"
+  gem "jekyll-feed", "~> 0.18"
   # Provides the {% gist %} tag used by an older post; previously supplied by
   # the `github-pages` gem.
   gem "jekyll-gist", "~> 1.5"
